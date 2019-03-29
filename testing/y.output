@@ -1,0 +1,2967 @@
+Terminals unused in grammar
+
+   "unknown symbol"
+
+
+State 7 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: lines eof_token
+
+    1 lines: lines line
+    2      | %empty
+
+    3 line: statement ';'
+    4     | var_token ';'
+    5     | '{' lines '}'
+    6     | if_start cond_operator
+    7     | while
+    8     | return
+    9     | _break ';'
+   10     | print
+   11     | error ';'
+
+   12 while_condition: statement
+
+   13 while_body: body
+
+   14 while_start: _while
+
+   15 while: while_start '(' while_condition ')' while_body
+   16      | while_start '(' error ')' while_body
+
+   17 if_body: body
+
+   18 body: statement ';'
+   19     | '{' lines '}'
+   20     | ';'
+
+   21 if_condition: statement
+
+   22 if_start: _if
+
+   23 cond_operator: '(' if_condition ')' if_body
+   24              | '(' if_condition ')' if_body _else _if cond_operator
+   25              | '(' if_condition ')' if_body _else body
+   26              | '(' error ')' if_body
+
+   27 statement: '(' statement ')'
+   28          | _inc single_var
+   29          | _dec single_var
+   30          | single_var _inc
+   31          | single_var _dec
+   32          | '-' statement
+   33          | '!' statement
+   34          | '~' statement
+   35          | statement '*' statement
+   36          | statement '%' statement
+   37          | statement '/' statement
+   38          | statement '-' statement
+   39          | statement '+' statement
+   40          | statement _lshift statement
+   41          | statement _rshift statement
+   42          | statement '>' statement
+   43          | statement '<' statement
+   44          | statement _meq statement
+   45          | statement _leq statement
+   46          | statement _eq statement
+   47          | statement _neq statement
+   48          | statement '&' statement
+   49          | statement '^' statement
+   50          | statement '|' statement
+   51          | statement _and statement
+   52          | statement _or statement
+   53          | var_token '=' statement
+   54          | var_token _asum statement
+   55          | var_token _asub statement
+   56          | var_token _amul statement
+   57          | var_token _adiv statement
+   58          | var_token _amod statement
+   59          | var_token _alshift statement
+   60          | var_token _arshift statement
+   61          | var_token _aand statement
+   62          | var_token _axor statement
+   63          | var_token _aor statement
+   64          | digit_token
+   65          | single_var
+
+   66 single_var: var_token
+
+   67 return: _return statement ';'
+   68       | _return ';'
+   69       | _return error ';'
+
+   70 print: _print statement ';'
+   71      | _print error ';'
+
+
+Terminals, with rules where they appear
+
+eof_token (0) 0
+'!' (33) 33
+'%' (37) 36
+'&' (38) 48
+'(' (40) 15 16 23 24 25 26 27
+')' (41) 15 16 23 24 25 26 27
+'*' (42) 35
+'+' (43) 39
+'-' (45) 32 38
+'/' (47) 37
+';' (59) 3 4 9 11 18 20 67 68 69 70 71
+'<' (60) 43
+'=' (61) 53
+'>' (62) 42
+'^' (94) 49
+'{' (123) 5 19
+'|' (124) 50
+'}' (125) 5 19
+'~' (126) 34
+error (256) 11 16 26 69 71
+_meq (258) 44
+_leq (259) 45
+_neq (260) 47
+_eq (261) 46
+_or (262) 52
+_and (263) 51
+_inc (264) 28 30
+_dec (265) 29 31
+_lshift (266) 40
+_rshift (267) 41
+digit_token (268) 64
+var_token (269) 4 53 54 55 56 57 58 59 60 61 62 63 66
+_if (270) 22 24
+_else (271) 24 25
+_while (272) 14
+_return (273) 67 68 69
+_print (274) 70 71
+_break (275) 9
+"unknown symbol" (276)
+_asum (277) 54
+_asub (278) 55
+_amul (279) 56
+_adiv (280) 57
+_amod (281) 58
+_alshift (282) 59
+_arshift (283) 60
+_aand (284) 61
+_axor (285) 62
+_aor (286) 63
+_uminus (287)
+_prefix (288)
+_postfix (289)
+
+
+Nonterminals, with rules where they appear
+
+$accept (53)
+    on left: 0
+lines (54)
+    on left: 1 2, on right: 0 1 5 19
+line (55)
+    on left: 3 4 5 6 7 8 9 10 11, on right: 1
+while_condition (56)
+    on left: 12, on right: 15
+while_body (57)
+    on left: 13, on right: 15 16
+while_start (58)
+    on left: 14, on right: 15 16
+while (59)
+    on left: 15 16, on right: 7
+if_body (60)
+    on left: 17, on right: 23 24 25 26
+body (61)
+    on left: 18 19 20, on right: 13 17 25
+if_condition (62)
+    on left: 21, on right: 23 24 25
+if_start (63)
+    on left: 22, on right: 6
+cond_operator (64)
+    on left: 23 24 25 26, on right: 6 24
+statement (65)
+    on left: 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44
+    45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65,
+    on right: 3 12 18 21 27 32 33 34 35 36 37 38 39 40 41 42 43 44
+    45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 67 70
+single_var (66)
+    on left: 66, on right: 28 29 30 31 65
+return (67)
+    on left: 67 68 69, on right: 8
+print (68)
+    on left: 70 71, on right: 10
+
+
+State 0
+
+    0 $accept: . lines eof_token
+
+    $default  reduce using rule 2 (lines)
+
+    lines  go to state 1
+
+
+State 1
+
+    0 $accept: lines . eof_token
+    1 lines: lines . line
+
+    eof_token    shift, and go to state 2
+    error        shift, and go to state 3
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 7
+    _if          shift, and go to state 8
+    _while       shift, and go to state 9
+    _return      shift, and go to state 10
+    _print       shift, and go to state 11
+    _break       shift, and go to state 12
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '{'          shift, and go to state 16
+    '('          shift, and go to state 17
+
+    line         go to state 18
+    while_start  go to state 19
+    while        go to state 20
+    if_start     go to state 21
+    statement    go to state 22
+    single_var   go to state 23
+    return       go to state 24
+    print        go to state 25
+
+
+State 2
+
+    0 $accept: lines eof_token .
+
+    $default  accept
+
+
+State 3
+
+   11 line: error . ';'
+
+    ';'  shift, and go to state 26
+
+
+State 4
+
+   28 statement: _inc . single_var
+
+    var_token  shift, and go to state 27
+
+    single_var  go to state 28
+
+
+State 5
+
+   29 statement: _dec . single_var
+
+    var_token  shift, and go to state 27
+
+    single_var  go to state 29
+
+
+State 6
+
+   64 statement: digit_token .
+
+    $default  reduce using rule 64 (statement)
+
+
+State 7
+
+    4 line: var_token . ';'
+   53 statement: var_token . '=' statement
+   54          | var_token . _asum statement
+   55          | var_token . _asub statement
+   56          | var_token . _amul statement
+   57          | var_token . _adiv statement
+   58          | var_token . _amod statement
+   59          | var_token . _alshift statement
+   60          | var_token . _arshift statement
+   61          | var_token . _aand statement
+   62          | var_token . _axor statement
+   63          | var_token . _aor statement
+   66 single_var: var_token .
+
+    '='       shift, and go to state 30
+    _asum     shift, and go to state 31
+    _asub     shift, and go to state 32
+    _amul     shift, and go to state 33
+    _adiv     shift, and go to state 34
+    _amod     shift, and go to state 35
+    _alshift  shift, and go to state 36
+    _arshift  shift, and go to state 37
+    _aand     shift, and go to state 38
+    _axor     shift, and go to state 39
+    _aor      shift, and go to state 40
+    ';'       shift, and go to state 41
+
+    ';'       [reduce using rule 66 (single_var)]
+    $default  reduce using rule 66 (single_var)
+
+
+State 8
+
+   22 if_start: _if .
+
+    $default  reduce using rule 22 (if_start)
+
+
+State 9
+
+   14 while_start: _while .
+
+    $default  reduce using rule 14 (while_start)
+
+
+State 10
+
+   67 return: _return . statement ';'
+   68       | _return . ';'
+   69       | _return . error ';'
+
+    error        shift, and go to state 42
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 44
+    '('          shift, and go to state 17
+
+    statement   go to state 45
+    single_var  go to state 23
+
+
+State 11
+
+   70 print: _print . statement ';'
+   71      | _print . error ';'
+
+    error        shift, and go to state 46
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 47
+    single_var  go to state 23
+
+
+State 12
+
+    9 line: _break . ';'
+
+    ';'  shift, and go to state 48
+
+
+State 13
+
+   32 statement: '-' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 49
+    single_var  go to state 23
+
+
+State 14
+
+   33 statement: '!' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 50
+    single_var  go to state 23
+
+
+State 15
+
+   34 statement: '~' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 51
+    single_var  go to state 23
+
+
+State 16
+
+    5 line: '{' . lines '}'
+
+    $default  reduce using rule 2 (lines)
+
+    lines  go to state 52
+
+
+State 17
+
+   27 statement: '(' . statement ')'
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 53
+    single_var  go to state 23
+
+
+State 18
+
+    1 lines: lines line .
+
+    $default  reduce using rule 1 (lines)
+
+
+State 19
+
+   15 while: while_start . '(' while_condition ')' while_body
+   16      | while_start . '(' error ')' while_body
+
+    '('  shift, and go to state 54
+
+
+State 20
+
+    7 line: while .
+
+    $default  reduce using rule 7 (line)
+
+
+State 21
+
+    6 line: if_start . cond_operator
+
+    '('  shift, and go to state 55
+
+    cond_operator  go to state 56
+
+
+State 22
+
+    3 line: statement . ';'
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+    ';'      shift, and go to state 75
+
+
+State 23
+
+   30 statement: single_var . _inc
+   31          | single_var . _dec
+   65          | single_var .
+
+    _inc  shift, and go to state 76
+    _dec  shift, and go to state 77
+
+    $default  reduce using rule 65 (statement)
+
+
+State 24
+
+    8 line: return .
+
+    $default  reduce using rule 8 (line)
+
+
+State 25
+
+   10 line: print .
+
+    $default  reduce using rule 10 (line)
+
+
+State 26
+
+   11 line: error ';' .
+
+    $default  reduce using rule 11 (line)
+
+
+State 27
+
+   66 single_var: var_token .
+
+    $default  reduce using rule 66 (single_var)
+
+
+State 28
+
+   28 statement: _inc single_var .
+
+    $default  reduce using rule 28 (statement)
+
+
+State 29
+
+   29 statement: _dec single_var .
+
+    $default  reduce using rule 29 (statement)
+
+
+State 30
+
+   53 statement: var_token '=' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 78
+    single_var  go to state 23
+
+
+State 31
+
+   54 statement: var_token _asum . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 79
+    single_var  go to state 23
+
+
+State 32
+
+   55 statement: var_token _asub . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 80
+    single_var  go to state 23
+
+
+State 33
+
+   56 statement: var_token _amul . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 81
+    single_var  go to state 23
+
+
+State 34
+
+   57 statement: var_token _adiv . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 82
+    single_var  go to state 23
+
+
+State 35
+
+   58 statement: var_token _amod . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 83
+    single_var  go to state 23
+
+
+State 36
+
+   59 statement: var_token _alshift . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 84
+    single_var  go to state 23
+
+
+State 37
+
+   60 statement: var_token _arshift . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 85
+    single_var  go to state 23
+
+
+State 38
+
+   61 statement: var_token _aand . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 86
+    single_var  go to state 23
+
+
+State 39
+
+   62 statement: var_token _axor . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 87
+    single_var  go to state 23
+
+
+State 40
+
+   63 statement: var_token _aor . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 88
+    single_var  go to state 23
+
+
+State 41
+
+    4 line: var_token ';' .
+
+    $default  reduce using rule 4 (line)
+
+
+State 42
+
+   69 return: _return error . ';'
+
+    ';'  shift, and go to state 89
+
+
+State 43
+
+   53 statement: var_token . '=' statement
+   54          | var_token . _asum statement
+   55          | var_token . _asub statement
+   56          | var_token . _amul statement
+   57          | var_token . _adiv statement
+   58          | var_token . _amod statement
+   59          | var_token . _alshift statement
+   60          | var_token . _arshift statement
+   61          | var_token . _aand statement
+   62          | var_token . _axor statement
+   63          | var_token . _aor statement
+   66 single_var: var_token .
+
+    '='       shift, and go to state 30
+    _asum     shift, and go to state 31
+    _asub     shift, and go to state 32
+    _amul     shift, and go to state 33
+    _adiv     shift, and go to state 34
+    _amod     shift, and go to state 35
+    _alshift  shift, and go to state 36
+    _arshift  shift, and go to state 37
+    _aand     shift, and go to state 38
+    _axor     shift, and go to state 39
+    _aor      shift, and go to state 40
+
+    $default  reduce using rule 66 (single_var)
+
+
+State 44
+
+   68 return: _return ';' .
+
+    $default  reduce using rule 68 (return)
+
+
+State 45
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   67 return: _return statement . ';'
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+    ';'      shift, and go to state 90
+
+
+State 46
+
+   71 print: _print error . ';'
+
+    ';'  shift, and go to state 91
+
+
+State 47
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   70 print: _print statement . ';'
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+    ';'      shift, and go to state 92
+
+
+State 48
+
+    9 line: _break ';' .
+
+    $default  reduce using rule 9 (line)
+
+
+State 49
+
+   32 statement: '-' statement .
+   35          | statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 32 (statement)
+
+
+State 50
+
+   33 statement: '!' statement .
+   35          | statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 33 (statement)
+
+
+State 51
+
+   34 statement: '~' statement .
+   35          | statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 34 (statement)
+
+
+State 52
+
+    1 lines: lines . line
+    5 line: '{' lines . '}'
+
+    error        shift, and go to state 3
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 7
+    _if          shift, and go to state 8
+    _while       shift, and go to state 9
+    _return      shift, and go to state 10
+    _print       shift, and go to state 11
+    _break       shift, and go to state 12
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '{'          shift, and go to state 16
+    '}'          shift, and go to state 93
+    '('          shift, and go to state 17
+
+    line         go to state 18
+    while_start  go to state 19
+    while        go to state 20
+    if_start     go to state 21
+    statement    go to state 22
+    single_var   go to state 23
+    return       go to state 24
+    print        go to state 25
+
+
+State 53
+
+   27 statement: '(' statement . ')'
+   35          | statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+    ')'      shift, and go to state 94
+
+
+State 54
+
+   15 while: while_start '(' . while_condition ')' while_body
+   16      | while_start '(' . error ')' while_body
+
+    error        shift, and go to state 95
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    while_condition  go to state 96
+    statement        go to state 97
+    single_var       go to state 23
+
+
+State 55
+
+   23 cond_operator: '(' . if_condition ')' if_body
+   24              | '(' . if_condition ')' if_body _else _if cond_operator
+   25              | '(' . if_condition ')' if_body _else body
+   26              | '(' . error ')' if_body
+
+    error        shift, and go to state 98
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    if_condition  go to state 99
+    statement     go to state 100
+    single_var    go to state 23
+
+
+State 56
+
+    6 line: if_start cond_operator .
+
+    $default  reduce using rule 6 (line)
+
+
+State 57
+
+   44 statement: statement _meq . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 101
+    single_var  go to state 23
+
+
+State 58
+
+   45 statement: statement _leq . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 102
+    single_var  go to state 23
+
+
+State 59
+
+   47 statement: statement _neq . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 103
+    single_var  go to state 23
+
+
+State 60
+
+   46 statement: statement _eq . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 104
+    single_var  go to state 23
+
+
+State 61
+
+   52 statement: statement _or . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 105
+    single_var  go to state 23
+
+
+State 62
+
+   51 statement: statement _and . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 106
+    single_var  go to state 23
+
+
+State 63
+
+   40 statement: statement _lshift . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 107
+    single_var  go to state 23
+
+
+State 64
+
+   41 statement: statement _rshift . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 108
+    single_var  go to state 23
+
+
+State 65
+
+   50 statement: statement '|' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 109
+    single_var  go to state 23
+
+
+State 66
+
+   49 statement: statement '^' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 110
+    single_var  go to state 23
+
+
+State 67
+
+   48 statement: statement '&' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 111
+    single_var  go to state 23
+
+
+State 68
+
+   42 statement: statement '>' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 112
+    single_var  go to state 23
+
+
+State 69
+
+   43 statement: statement '<' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 113
+    single_var  go to state 23
+
+
+State 70
+
+   39 statement: statement '+' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 114
+    single_var  go to state 23
+
+
+State 71
+
+   38 statement: statement '-' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 115
+    single_var  go to state 23
+
+
+State 72
+
+   35 statement: statement '*' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 116
+    single_var  go to state 23
+
+
+State 73
+
+   37 statement: statement '/' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 117
+    single_var  go to state 23
+
+
+State 74
+
+   36 statement: statement '%' . statement
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '('          shift, and go to state 17
+
+    statement   go to state 118
+    single_var  go to state 23
+
+
+State 75
+
+    3 line: statement ';' .
+
+    $default  reduce using rule 3 (line)
+
+
+State 76
+
+   30 statement: single_var _inc .
+
+    $default  reduce using rule 30 (statement)
+
+
+State 77
+
+   31 statement: single_var _dec .
+
+    $default  reduce using rule 31 (statement)
+
+
+State 78
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   53          | var_token '=' statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 53 (statement)
+
+
+State 79
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   54          | var_token _asum statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 54 (statement)
+
+
+State 80
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   55          | var_token _asub statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 55 (statement)
+
+
+State 81
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   56          | var_token _amul statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 56 (statement)
+
+
+State 82
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   57          | var_token _adiv statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 57 (statement)
+
+
+State 83
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   58          | var_token _amod statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 58 (statement)
+
+
+State 84
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   59          | var_token _alshift statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 59 (statement)
+
+
+State 85
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   60          | var_token _arshift statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 60 (statement)
+
+
+State 86
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   61          | var_token _aand statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 61 (statement)
+
+
+State 87
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   62          | var_token _axor statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 62 (statement)
+
+
+State 88
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   63          | var_token _aor statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 63 (statement)
+
+
+State 89
+
+   69 return: _return error ';' .
+
+    $default  reduce using rule 69 (return)
+
+
+State 90
+
+   67 return: _return statement ';' .
+
+    $default  reduce using rule 67 (return)
+
+
+State 91
+
+   71 print: _print error ';' .
+
+    $default  reduce using rule 71 (print)
+
+
+State 92
+
+   70 print: _print statement ';' .
+
+    $default  reduce using rule 70 (print)
+
+
+State 93
+
+    5 line: '{' lines '}' .
+
+    $default  reduce using rule 5 (line)
+
+
+State 94
+
+   27 statement: '(' statement ')' .
+
+    $default  reduce using rule 27 (statement)
+
+
+State 95
+
+   16 while: while_start '(' error . ')' while_body
+
+    ')'  shift, and go to state 119
+
+
+State 96
+
+   15 while: while_start '(' while_condition . ')' while_body
+
+    ')'  shift, and go to state 120
+
+
+State 97
+
+   12 while_condition: statement .
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 12 (while_condition)
+
+
+State 98
+
+   26 cond_operator: '(' error . ')' if_body
+
+    ')'  shift, and go to state 121
+
+
+State 99
+
+   23 cond_operator: '(' if_condition . ')' if_body
+   24              | '(' if_condition . ')' if_body _else _if cond_operator
+   25              | '(' if_condition . ')' if_body _else body
+
+    ')'  shift, and go to state 122
+
+
+State 100
+
+   21 if_condition: statement .
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 21 (if_condition)
+
+
+State 101
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   44          | statement _meq statement .
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 44 (statement)
+
+
+State 102
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   45          | statement _leq statement .
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 45 (statement)
+
+
+State 103
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   47          | statement _neq statement .
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 47 (statement)
+
+
+State 104
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   46          | statement _eq statement .
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 46 (statement)
+
+
+State 105
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+   52          | statement _or statement .
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 52 (statement)
+
+
+State 106
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   51          | statement _and statement .
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 51 (statement)
+
+
+State 107
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   40          | statement _lshift statement .
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    '+'  shift, and go to state 70
+    '-'  shift, and go to state 71
+    '*'  shift, and go to state 72
+    '/'  shift, and go to state 73
+    '%'  shift, and go to state 74
+
+    $default  reduce using rule 40 (statement)
+
+
+State 108
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   41          | statement _rshift statement .
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    '+'  shift, and go to state 70
+    '-'  shift, and go to state 71
+    '*'  shift, and go to state 72
+    '/'  shift, and go to state 73
+    '%'  shift, and go to state 74
+
+    $default  reduce using rule 41 (statement)
+
+
+State 109
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   50          | statement '|' statement .
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 50 (statement)
+
+
+State 110
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   49          | statement '^' statement .
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 49 (statement)
+
+
+State 111
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   48          | statement '&' statement .
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 48 (statement)
+
+
+State 112
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   42          | statement '>' statement .
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 42 (statement)
+
+
+State 113
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   43          | statement '<' statement .
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+
+    $default  reduce using rule 43 (statement)
+
+
+State 114
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   39          | statement '+' statement .
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    '*'  shift, and go to state 72
+    '/'  shift, and go to state 73
+    '%'  shift, and go to state 74
+
+    $default  reduce using rule 39 (statement)
+
+
+State 115
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   38          | statement '-' statement .
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    '*'  shift, and go to state 72
+    '/'  shift, and go to state 73
+    '%'  shift, and go to state 74
+
+    $default  reduce using rule 38 (statement)
+
+
+State 116
+
+   35 statement: statement . '*' statement
+   35          | statement '*' statement .
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 35 (statement)
+
+
+State 117
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   37          | statement '/' statement .
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 37 (statement)
+
+
+State 118
+
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   36          | statement '%' statement .
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    $default  reduce using rule 36 (statement)
+
+
+State 119
+
+   16 while: while_start '(' error ')' . while_body
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 123
+    '{'          shift, and go to state 124
+    '('          shift, and go to state 17
+
+    while_body  go to state 125
+    body        go to state 126
+    statement   go to state 127
+    single_var  go to state 23
+
+
+State 120
+
+   15 while: while_start '(' while_condition ')' . while_body
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 123
+    '{'          shift, and go to state 124
+    '('          shift, and go to state 17
+
+    while_body  go to state 128
+    body        go to state 126
+    statement   go to state 127
+    single_var  go to state 23
+
+
+State 121
+
+   26 cond_operator: '(' error ')' . if_body
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 123
+    '{'          shift, and go to state 124
+    '('          shift, and go to state 17
+
+    if_body     go to state 129
+    body        go to state 130
+    statement   go to state 127
+    single_var  go to state 23
+
+
+State 122
+
+   23 cond_operator: '(' if_condition ')' . if_body
+   24              | '(' if_condition ')' . if_body _else _if cond_operator
+   25              | '(' if_condition ')' . if_body _else body
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 123
+    '{'          shift, and go to state 124
+    '('          shift, and go to state 17
+
+    if_body     go to state 131
+    body        go to state 130
+    statement   go to state 127
+    single_var  go to state 23
+
+
+State 123
+
+   20 body: ';' .
+
+    $default  reduce using rule 20 (body)
+
+
+State 124
+
+   19 body: '{' . lines '}'
+
+    $default  reduce using rule 2 (lines)
+
+    lines  go to state 132
+
+
+State 125
+
+   16 while: while_start '(' error ')' while_body .
+
+    $default  reduce using rule 16 (while)
+
+
+State 126
+
+   13 while_body: body .
+
+    $default  reduce using rule 13 (while_body)
+
+
+State 127
+
+   18 body: statement . ';'
+   35 statement: statement . '*' statement
+   36          | statement . '%' statement
+   37          | statement . '/' statement
+   38          | statement . '-' statement
+   39          | statement . '+' statement
+   40          | statement . _lshift statement
+   41          | statement . _rshift statement
+   42          | statement . '>' statement
+   43          | statement . '<' statement
+   44          | statement . _meq statement
+   45          | statement . _leq statement
+   46          | statement . _eq statement
+   47          | statement . _neq statement
+   48          | statement . '&' statement
+   49          | statement . '^' statement
+   50          | statement . '|' statement
+   51          | statement . _and statement
+   52          | statement . _or statement
+
+    _meq     shift, and go to state 57
+    _leq     shift, and go to state 58
+    _neq     shift, and go to state 59
+    _eq      shift, and go to state 60
+    _or      shift, and go to state 61
+    _and     shift, and go to state 62
+    _lshift  shift, and go to state 63
+    _rshift  shift, and go to state 64
+    '|'      shift, and go to state 65
+    '^'      shift, and go to state 66
+    '&'      shift, and go to state 67
+    '>'      shift, and go to state 68
+    '<'      shift, and go to state 69
+    '+'      shift, and go to state 70
+    '-'      shift, and go to state 71
+    '*'      shift, and go to state 72
+    '/'      shift, and go to state 73
+    '%'      shift, and go to state 74
+    ';'      shift, and go to state 133
+
+
+State 128
+
+   15 while: while_start '(' while_condition ')' while_body .
+
+    $default  reduce using rule 15 (while)
+
+
+State 129
+
+   26 cond_operator: '(' error ')' if_body .
+
+    $default  reduce using rule 26 (cond_operator)
+
+
+State 130
+
+   17 if_body: body .
+
+    $default  reduce using rule 17 (if_body)
+
+
+State 131
+
+   23 cond_operator: '(' if_condition ')' if_body .
+   24              | '(' if_condition ')' if_body . _else _if cond_operator
+   25              | '(' if_condition ')' if_body . _else body
+
+    _else  shift, and go to state 134
+
+    $default  reduce using rule 23 (cond_operator)
+
+
+State 132
+
+    1 lines: lines . line
+   19 body: '{' lines . '}'
+
+    error        shift, and go to state 3
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 7
+    _if          shift, and go to state 8
+    _while       shift, and go to state 9
+    _return      shift, and go to state 10
+    _print       shift, and go to state 11
+    _break       shift, and go to state 12
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    '{'          shift, and go to state 16
+    '}'          shift, and go to state 135
+    '('          shift, and go to state 17
+
+    line         go to state 18
+    while_start  go to state 19
+    while        go to state 20
+    if_start     go to state 21
+    statement    go to state 22
+    single_var   go to state 23
+    return       go to state 24
+    print        go to state 25
+
+
+State 133
+
+   18 body: statement ';' .
+
+    $default  reduce using rule 18 (body)
+
+
+State 134
+
+   24 cond_operator: '(' if_condition ')' if_body _else . _if cond_operator
+   25              | '(' if_condition ')' if_body _else . body
+
+    _inc         shift, and go to state 4
+    _dec         shift, and go to state 5
+    digit_token  shift, and go to state 6
+    var_token    shift, and go to state 43
+    _if          shift, and go to state 136
+    '-'          shift, and go to state 13
+    '!'          shift, and go to state 14
+    '~'          shift, and go to state 15
+    ';'          shift, and go to state 123
+    '{'          shift, and go to state 124
+    '('          shift, and go to state 17
+
+    body        go to state 137
+    statement   go to state 127
+    single_var  go to state 23
+
+
+State 135
+
+   19 body: '{' lines '}' .
+
+    $default  reduce using rule 19 (body)
+
+
+State 136
+
+   24 cond_operator: '(' if_condition ')' if_body _else _if . cond_operator
+
+    '('  shift, and go to state 55
+
+    cond_operator  go to state 138
+
+
+State 137
+
+   25 cond_operator: '(' if_condition ')' if_body _else body .
+
+    $default  reduce using rule 25 (cond_operator)
+
+
+State 138
+
+   24 cond_operator: '(' if_condition ')' if_body _else _if cond_operator .
+
+    $default  reduce using rule 24 (cond_operator)

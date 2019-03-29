@@ -1,0 +1,24 @@
+# labels missmatch. find label : "while0". Line = 3
+# Unrecognized label : "jl_true0"
+# Unrecognized label : "jl_false0"
+# labels MATCH. find label : "jl_true0". Line = 11
+# labels MATCH. find label : "jl_false0". Line = 12
+# Unrecognized label : "while_0_exit"
+# Unrecognized label : "je_true0"
+# Unrecognized label : "je_false0"
+# labels MATCH. find label : "je_true0". Line = 22
+# labels MATCH. find label : "je_false0". Line = 23
+# Unrecognized label : "if_body_exit0"
+# Unrecognized label : "if_end0"
+# labels MATCH. find label : "if_body_exit0". Line = 28
+# Unrecognized label : "if_body_exit1"
+# labels MATCH. find label : "if_body_exit1". Line = 38
+# labels MATCH. find label : "if_end0". Line = 38
+# labels MATCH. find label : "while_0_exit". Line = 41
+# labels missmatch. find label : "while1". Line = 44
+# Unrecognized label : "jl_true1"
+# Unrecognized label : "jl_false1"
+# labels MATCH. find label : "jl_true1". Line = 50
+# labels MATCH. find label : "jl_false1". Line = 51
+# Unrecognized label : "while_1_exit"
+# labels MATCH. find label : "while_1_exit". Line = 58

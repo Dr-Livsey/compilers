@@ -1,0 +1,28 @@
+a = (5 + 1) << 22;
+
+while (a)
+{
+    b = 5;
+    a << (5 | 255) & 25;
+
+    if (a + 1 && b != 0)
+    {
+        print (1 * 2 + 1) ^ 25;
+    }
+    else if (1)
+    {
+        c = 25;
+        while (c <= 1000) c *= 25 + 1;
+
+        if (a != 25 && a > 34) a = 100;
+    }
+    else
+    {
+        i = 0;
+        while (i < 100) 
+        {
+            print i;
+        }
+        return asdas;
+    }
+}

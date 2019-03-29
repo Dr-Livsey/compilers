@@ -1,0 +1,20 @@
+while (b == (a+b))
+{
+    if (c != a)
+    {
+        a = (((a * b ^ c))) * 123;
+        e += 1123;
+    }
+    else
+    {
+        if ((var - 123) != 0)
+        {
+            while (var) var -= 1;
+            {
+                
+            }
+        }
+    }
+}
+
+return a == b;
