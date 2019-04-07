@@ -1,0 +1,10 @@
+/*
+    TODO:
+        I. FUNCTIONS
+            - generic_attr
+			- generic_args
+			- where
+			- type
+			- name
+			- t_closure
+ */

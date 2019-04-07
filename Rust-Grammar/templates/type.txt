@@ -1,0 +1,23 @@
+# import = identifier 
+# import = generic_args 
+
+  type 
+	|
+	+---t_prim 
+	|		|
+	|		+---path_generic_args_without_colons 
+	|		|		|
+	|		|		+---identifier 
+	|		|		+---identifier generic_args 
+	|		|		+---path_generic_args_without_colons MODULE_SEP identifier 
+	|		|		+---path_generic_args_without_colons MODULE_SEP identifier generic_args 
+	|		|		
+	|		|		
+	|		+---MODULE_SEP path_generic_args_without_colons 
+	|		+---SELF MODULE_SEP path_generic_args_without_colons 
+	|		+---'&' type
+	|		+---'&' MUT type
+	|		+---'[' type ']'
+	|		+---'_'
+	|
+	+---t_closure 

@@ -1,0 +1,4 @@
+item_enum
+|
++---ENUM [ident] [generic_params] [maybe_where_clause] '{' enum_defs '}'
++---ENUM [ident] [generic_params] [maybe_where_clause] '{' enum_defs ',' '}'

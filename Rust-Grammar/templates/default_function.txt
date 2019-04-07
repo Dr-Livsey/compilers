@@ -1,0 +1,42 @@
+# import = [pat]
+# import = [ty]
+# import = [maybe_where_clause]
+# import = [generic_params]
+# import = [inner_attrs_and_block]
+
+item_fn
+	|
+	+----FN ident [generic_params] 	fn_decl [maybe_where_clause] [inner_attrs_and_block]
+	|			|						|
+	|			+---IDENT				|
+	|			+---CATCH				|
+	|			+---DEFAULT				+---fn_params
+	|			+---UNION				|	|
+	|									|	+---'(' maybe_params ')'
+	|									|			|
+	|									|			+---params
+	|									|			|	|
+	|									|			|	+---param
+	|									|			|	|	|
+	|									|			|	|	+---[pat] ':' ty_sum
+	|									|			|	|					|
+	|									|			|	|					+---ty_sum_elt
+	|									|			|	|					|		|
+	|									|			|	|					|		+--- [ty] 
+	|									|			|	|					|		+---lifetime
+	|									|			|	|					|				|
+	|									|			|	|					|				+---LIFETIME
+	|									|			|	|					|				+---STATIC_LIFETIME
+	|									|			|	|					|		
+	|									|			|	|					|		
+	|									|			|	|					+---ty_sum '+' ty_sum_elt
+	|									|			|	|												
+	|									|			|	+---params ',' param
+	|									|			|
+	|									|			+--params ','
+	|									|
+	|									+---ret_ty
+												|
+												+---RARROW [ty]
+	|
+	+---CONST FN ident [generic_params] fn_decl [maybe_where_clause] [inner_attrs_and_block]

@@ -1,0 +1,21 @@
+item_trait
+	|
+	+---maybe_unsafe TRAIT [ident] generic_params maybe_ty_param_bounds [maybe_where_clause] '{' maybe_trait_items '}'
+		|							|				  |											 |
+		|							|				  |											 |
+		|							|				  |											 |
+		|							+---'<''>'		  +---':' ty_param_bounds					 +---trait_items
+		+--UNSAFE					+---'<' lifetimes '>'		|									 |
+									+---'<' ty_params '>'		+---boundseq						 +---[trait_const]
+									+---...                     |   |								 +---[trait_type]
+																|	+---polybound					 +---[trait_method]
+																|		|							 +---...
+																|		|							 
+																|		+---FOR '<' [maybe_lifetimes] '>' bound
+																|		|								  |
+																|		|								  + TRAIT_REF
+																|		+---bound
+																|		+---'?' FOR '<' [maybe_lifetimes] '>' bound
+																|		+---'?' bound
+																|	
+																+---boundseq '+' polybound

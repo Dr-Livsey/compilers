@@ -1,0 +1,4 @@
+item_union
+|
++---UNION [ident] [generic_params] [maybe_where_clause] '{' [struct_decl_fields] '}'
++---UNION [ident] [generic_params] [maybe_where_clause] '{' [struct_decl_fields] ',' '}'

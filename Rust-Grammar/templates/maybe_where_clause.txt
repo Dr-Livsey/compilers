@@ -1,0 +1,17 @@
+
+
+maybe_where_clause
+	|
+	+---%empty
+	+---where_clause
+			|
+			+---WHERE where_statements
+			|			|
+			|			+---where 
+			|			|		|
+			|			|		+---%empty
+			|			|
+			|			+---where_statements ',' where
+			|
+			+---WHERE where_statements ','
+							

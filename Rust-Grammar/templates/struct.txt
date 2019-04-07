@@ -1,0 +1,13 @@
+item_struct
+|
++--STRUCT [ident] [generic_params] [maybe_where_clause] struct_decl_args
+|														|
+|														+-'{' [struct_decl_fields] '}'
+|														+-'{' [struct_decl_fields] ',' '}'
+|
++--STRUCT [ident] [generic_params] struct_tuple_args [maybe_where_clause] ';'
+|                                   |
+|								   +---'(' [struct_tuple_fields] ')'
+|								   +---'(' [struct_tuple_fields] ',' ')'
+|
++--STRUCT [ident] [generic_params] [maybe_where_clause] ';'

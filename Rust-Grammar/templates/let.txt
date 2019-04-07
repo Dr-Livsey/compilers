@@ -1,0 +1,16 @@
+let
+| 
++---LET [pat] maybe_ty_ascription maybe_init_expr ';'
+				|				  |
+				+---':' [ty_sum]  +---'=' expr
+										  |
+										  +---expr '>' expr
+										  +---expr '<' expr
+										  +---expr LE expr
+										  +---expr GE expr
+										  +---expr '+' expr
+										  +---expr '-' expr
+										  +---expr '*' expr
+										  +---expr '/' expr
+										  +---'[' [vec_expr] ']'
+										  +---....
